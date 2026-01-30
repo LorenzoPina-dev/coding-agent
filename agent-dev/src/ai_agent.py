@@ -98,13 +98,17 @@ class AIDevelopmentAgent:
         
         console.print("\n[green]💬 Start by describing what you want to build...[/green]")
         
-        # Start conversation
+        # Start conversation - get first question
         current_message = self.discovery_agent.start_conversation()
         console.print(f"\n{current_message}")
+        
+        # Get initial response BEFORE entering progress context
+        initial_response = Prompt.ask("\n[bold]Your response[/bold]")
         
         understanding_score = 0.0
         iteration = 1
         
+        # Initialize progress bar
         with Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -112,17 +116,33 @@ class AIDevelopmentAgent:
         ) as progress:
             task = progress.add_task("Understanding your project...", total=100)
             
-            while understanding_score < 0.9 and iteration < 20:  # Max 20 iterations
-                # Get user input
+            # Process initial response
+            if initial_response.strip():
+                next_message, is_complete, understanding_score = self.discovery_agent.process_response(initial_response)
+                progress.update(task, completed=int(understanding_score * 100))
+                console.print(f"\n{next_message}")
+                
+                if is_complete:
+                    understanding_score = 0.9  # Force completion
+            
+            # Continue with conversation
+            while understanding_score < 0.9 and iteration < 20:
+                # TEMPORARY: Close progress to get user input
+                progress.stop()
+                
                 user_input = Prompt.ask(f"\n[iteration {iteration}] Your response")
+                
+                # Restart progress
+                progress.start_task(task)
+                
+                if not user_input.strip():
+                    console.print("[yellow]Please provide some input...[/yellow]")
+                    continue
                 
                 # Process response
                 next_message, is_complete, understanding_score = self.discovery_agent.process_response(user_input)
                 
-                # Update progress
                 progress.update(task, completed=int(understanding_score * 100))
-                
-                # Show next message
                 console.print(f"\n{next_message}")
                 
                 if is_complete:
@@ -135,7 +155,7 @@ class AIDevelopmentAgent:
         
         console.print(f"\n[green]✅ Discovery complete! Understanding: {understanding_score:.0%}[/green]")
         return project_data
-    
+        
     def _generate_ai_prd(self, discovery_data: Dict[str, Any]) -> Dict[str, Any]:
         """Generate AI-optimized PRD"""
         console.print(Panel.fit(
