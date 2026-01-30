@@ -14,7 +14,7 @@ from .config.settings import AgentSettings
 from .utils.llm import LLMClient
 from .config.prompts import PromptManager
 from .discovery.smart_agent import SmartDiscoveryAgent
-from .analyst.prd_generator import AIOptimizedPRDGenerator
+from .analyst.prd_generator import PRDGenerator
 from .tasks.ai_decomposer import AITaskDecomposer
 from .tasks.manager import TaskManager
 from .builder.agent import BuilderAgent
@@ -26,7 +26,7 @@ from .file_manager.handler import FileManager
 console = Console()
 
 
-class AIDevelopmentAgent:
+class SoftwareDevAgent:
     """Main AI Development Agent with intelligent iterative discovery"""
     
     def __init__(self, settings: Optional[AgentSettings] = None):
@@ -38,7 +38,7 @@ class AIDevelopmentAgent:
         
         # AI-optimized components
         self.discovery_agent = SmartDiscoveryAgent(self.llm_client, self.prompt_manager)
-        self.prd_generator = AIOptimizedPRDGenerator(self.llm_client)
+        self.prd_generator = PRDGenerator(self.llm_client)
         self.task_decomposer = AITaskDecomposer(self.llm_client)
         
         # Traditional components

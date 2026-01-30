@@ -9,7 +9,7 @@ from pathlib import Path
 # Add to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from src.agent import AIDevelopmentAgent
+from src.agent import SoftwareDevAgent
 from src.config.settings import AgentSettings, LLMProvider
 
 
@@ -29,7 +29,7 @@ def main():
     )
     
     # Create and run AI agent
-    agent = AIDevelopmentAgent(settings)
+    agent = SoftwareDevAgent(settings)
     
     try:
         agent.run()

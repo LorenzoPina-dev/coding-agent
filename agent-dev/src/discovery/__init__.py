@@ -2,13 +2,13 @@
 Discovery agent module
 """
 
-from .agent import DiscoveryAgent, DiscoveryResponse
+from .agent import SmartDiscoveryAgent, UnderstandingMetric
 from .phases import DiscoveryPhase, PhaseState, DiscoveryState
 from .validator import ResponseValidator
 
 __all__ = [
-    "DiscoveryAgent",
-    "DiscoveryResponse",
+    "SmartDiscoveryAgent",
+    "UnderstandingMetric",
     "DiscoveryPhase",
     "PhaseState", 
     "DiscoveryState",

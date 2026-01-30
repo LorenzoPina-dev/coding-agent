@@ -8,7 +8,7 @@ from datetime import datetime
 from src.utils.llm import LLMClient
 
 
-class AIOptimizedPRDGenerator:
+class PRDGenerator:
     """Generate PRDs optimized for AI agent consumption"""
     
     def __init__(self, llm_client: LLMClient):
