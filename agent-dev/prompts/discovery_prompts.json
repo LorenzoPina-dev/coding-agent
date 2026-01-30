@@ -1,0 +1,19 @@
+{
+    "phase_intro": "Welcome to the Software Development Agent. I'll help you turn your product idea into production-ready code.\n\nLet's start with the INTRO phase:\n1. What is the name of your product/project?\n2. In one sentence, what problem does it solve?\n3. What type of application is this (web app, mobile, CLI, API, etc.)?",
+    
+    "phase_goals": "Great! Now let's define the GOALS phase:\n1. What are the 3-5 primary objectives for version 1.0?\n2. What does success look like for this project?\n3. Are there any specific metrics or KPIs to track?\n4. What's the timeline for development?",
+    
+    "phase_users": "Excellent. Now the USERS phase:\n1. Who are the primary users/personas?\n2. What are their key needs and pain points?\n3. What technical expertise do they have?\n4. How will they interact with the system?",
+    
+    "phase_constraints": "Now let's discuss CONSTRAINTS:\n1. Technical constraints (languages, frameworks, databases)?\n2. Budget and resource constraints?\n3. Timeline and deadline constraints?\n4. Compliance/regulatory constraints?",
+    
+    "phase_non_goals": "Important: NON-GOALS phase:\n1. What features are explicitly OUT of scope for v1.0?\n2. What won't this system do?\n3. What limitations should we acknowledge upfront?",
+    
+    "phase_risks": "RISKS phase:\n1. What are the top technical risks?\n2. What are the business/UX risks?\n3. What dependencies could block progress?\n4. What assumptions are we making?",
+    
+    "phase_confirmation": "CONFIRMATION phase:\nBased on our discussion, here's what I understand:\n{summary}\n\nPlease confirm if this is correct or specify what needs to be changed.",
+    
+    "clarification_request": "I need more clarity on: {aspect}\nCould you please provide more details about: {specific_question}",
+    
+    "vague_response_detected": "Your response seems a bit vague. Could you be more specific about:\n{clarification_points}"
+}
